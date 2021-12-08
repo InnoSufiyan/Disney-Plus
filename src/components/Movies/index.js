@@ -1,14 +1,22 @@
 import React from 'react';
 import styled from 'styled-components';
+import { useParams, useNavigate } from "react-router-dom";
+
 
 function Movies() {
+    let navigate = useNavigate();
+
     return (
         <Container>
             <h4>
                 Recommended for You
             </h4>
             <Content>
-                <Wrap>
+                <Wrap onClick={
+                    ()=> {
+                        navigate("/detail");
+                    }
+                }>
                     <img src="https://mir-s3-cdn-cf.behance.net/projects/404/934f00117486689.Y3JvcCw5MjAsNzIwLDE4MCww.jpg" />
                 </Wrap>
                 <Wrap>
