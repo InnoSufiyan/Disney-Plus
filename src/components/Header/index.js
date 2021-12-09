@@ -1,7 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useParams, useNavigate } from "react-router-dom";
+
+
 
 function Header() {
+    let navigate = useNavigate();
+
     return (
         <Nav>
             <Logo src="/images/logo.svg" />
@@ -31,10 +36,16 @@ function Header() {
                     <span>Series</span>
                 </a>
             </NavMenu>
-            <UserImg src="https://yt3.ggpht.com/ytc/AKedOLQADltt0SdHv64U08B5zuCISyIJjy4wgorAHTdhtw=s900-c-k-c0x00ffffff-no-rj" />
+            <UserImg onClick={() => {
+
+                navigate("/login");
+
+            }} src="https://yt3.ggpht.com/ytc/AKedOLQADltt0SdHv64U08B5zuCISyIJjy4wgorAHTdhtw=s900-c-k-c0x00ffffff-no-rj" />
         </Nav>
     )
 }
+
+
 
 export default Header
 
