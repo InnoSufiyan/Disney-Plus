@@ -73,9 +73,10 @@ const ImageTitle = styled.div`
     min-height: 170px;
     width: 35vw;
     min-width: 200px;
+    margin : 60px 0;
 
     img {
-        width: 100%;
+        // width: 100%;
         height: 100%;
         object-fit: contain;
     }
@@ -110,7 +111,7 @@ const TrailerButton = styled(PlayButton)`
     text-transform : uppercase;
 `
 const AddButton = styled.button`
-margin-right: 16px;
+    margin-right: 16px;
     width: 44px;
     height: 44px;
     display: flex;
@@ -140,4 +141,5 @@ const Description = styled.div`
     font-size: 20px;
     margin-top: 16px;
     color: rgb(249,249,249);
+    max-width: 760px;
 `

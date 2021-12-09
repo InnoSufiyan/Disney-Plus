@@ -23,8 +23,8 @@ const Container = styled.div`
     position: relative;
     height: calc(100vh - 70px);
     display: flex;
+    align-items: top;
     justify-content: center;
-    align-items: center;
 
     &:before {
         background-position: top;
@@ -33,6 +33,7 @@ const Container = styled.div`
         background-image : url("/images/login-background.jpg");
         content: "";
         position: absolute;
+        opacity: 0.7;
         top: 0;
         left: 0;
         right: 0;
@@ -46,6 +47,8 @@ const Cta = styled.div`
     width: 90%;
     display: flex;
     flex-direction: column;
+    margin-top: 100px;
+    align-items: center;
 
     
 `
@@ -54,7 +57,7 @@ const LogoOne = styled.img`
     
 `
 const LogoTwo = styled.img`
-    
+    width: 90%;
     
 `
 const Description = styled.p`
