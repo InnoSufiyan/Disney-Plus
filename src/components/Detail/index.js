@@ -1,44 +1,82 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import styled from 'styled-components';
+import { selectMovie, selectMovies, setMovie } from '../../features/movie/movieSlice';
+import sanityClient from '../../Client'
+
+import imageUrlBuilder from "@sanity/image-url";
+
+const builder = imageUrlBuilder(sanityClient);
+
+function urlFor(source) {
+    return builder.image(source);
+}
+
 
 function Detail() {
+    const dispatch = useDispatch()
+    const dataa = useSelector(selectMovie)
+    const params = useParams();
+
+    useEffect(() => {
+
+        sanityClient.fetch(
+            `
+            *[_type=="post" && _id == "${params.id}" ] {
+                _id,
+  title,
+  slug,
+  subTitle,
+  titleImg,
+  backgroundImage,
+  cardImg,
+  publishedAt,
+  description,
+              }
+            `
+        ).then((data) => dispatch(setMovie((data))))
+            .catch(console.error)
+    }, [])
+
     return (
         <Container>
-            <Background>
-                <img src="https://mir-s3-cdn-cf.behance.net/project_modules/fs/e97934117486689.6076c46d88193.jpg" />
-            </Background>
-            <ImageTitle>
-                <img src="/images/Logo.png" />
-            </ImageTitle>
-            <Controls>
-                <PlayButton>
-                    <img src="/images/play-icon-black.png" />
-                    <span>Play</span>
-                </PlayButton>
-                <TrailerButton>
-                    <img src="/images/play-icon-white.png" />
-                    <span>Trailer</span>
-                </TrailerButton>
-                <AddButton>
-                    <span>+</span>
-                </AddButton>
-                <GroupWatchButton>
-                    <img src="/images/group-icon.png" />
-                </GroupWatchButton>
-            </Controls>
-            <SubTitle>
-                Baran e Rehmat Ident 1
-            </SubTitle>
-            <Description>
-                created for Aaj Network
+            {
+                dataa?.filter((item) => item?._id == params.id)?.map((item, index) => (
+                    <>
+                        <Background>
+                            <img src={urlFor(item.backgroundImage).width(3200).url()} />
+                        </Background>
+                        <ImageTitle>
+                            <img src={urlFor(item.titleImg).width(400).url()} />
+                        </ImageTitle>
+                        <Controls>
+                            <PlayButton>
+                                <img src="/images/play-icon-black.png" />
+                                <span>Play</span>
+                            </PlayButton>
+                            <TrailerButton>
+                                <img src="/images/play-icon-white.png" />
+                                <span>Trailer</span>
+                            </TrailerButton>
+                            <AddButton>
+                                <span>+</span>
+                            </AddButton>
+                            <GroupWatchButton>
+                                <img src="/images/group-icon.png" />
+                            </GroupWatchButton>
+                        </Controls>
+                        <SubTitle>
+                            {item?.subTitle}
+                        </SubTitle>
+                        <Description>
+                            {item?.description[0].children[0].text}
+                        </Description>
+                    </>
+                ))
+            }
 
-                3d and Composite
-                Mohsin Shahzad
-                Inno Sufiyan
 
-                Creative Manager: Waseem Qasim
-                Creative Head: Mudassir Ali Shah
-            </Description>
         </Container>
     )
 }

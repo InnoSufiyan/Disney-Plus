@@ -64,7 +64,7 @@ const Description = styled.p`
     font-size: 11px;
     line-spacing: 1.5px;
     text-align: center;
-    line-height: 15px;
+    line-height: 1.5;
 
     
 `

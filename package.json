@@ -4,9 +4,12 @@
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.6.2",
+    "@sanity/client": "^3.3.1",
+    "@sanity/image-url": "^1.0.1",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",
+    "firebase": "^9.8.2",
     "firebase-tools": "^9.23.1",
     "history": "^5.1.0",
     "react": "^17.0.2",

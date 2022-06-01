@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, Link } from "react-router-dom";
 
 
 
@@ -9,7 +9,9 @@ function Header() {
 
     return (
         <Nav>
-            <Logo src="/images/logo.svg" />
+            <Link to="/">
+                <Logo src="/images/logo.svg" />
+            </Link>
             <NavMenu>
                 <a>
                     <img src="/images/home-icon.svg" />
