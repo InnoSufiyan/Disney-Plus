@@ -10,7 +10,7 @@ function Header() {
     return (
         <Nav>
             <Link to="/">
-                <Logo src="/images/logo.svg" />
+                <Logo src="/images/MyLogo.png" />
             </Link>
             <NavMenu>
                 <a>

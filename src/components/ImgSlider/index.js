@@ -1,10 +1,23 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styled from 'styled-components'
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import { selectSlider, setSlider } from '../../features/movie/movieSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import sanityClient from '../../Client'
+import imageUrlBuilder from "@sanity/image-url";
+
+const builder = imageUrlBuilder(sanityClient);
+
+function urlFor(source) {
+    return builder.image(source);
+}
 
 function ImgSlider() {
+
+    const dispatch = useDispatch()
+    const dataa = useSelector(selectSlider)
 
     let settings = {
         dots: true,
@@ -15,15 +28,29 @@ function ImgSlider() {
         autoplay: true,
     };
 
+    useEffect(() => {
+
+        // sanityClient.fetch(
+        //     `
+        //     *[_type == "slider"] {
+        //         slider
+        //       }
+        //     `
+        // ).then((data) => dispatch(setSlider(data)))
+        //     .catch(console.error)
+    }, [])
+
 
     return (
         <Carousel {...settings}>
-            <Wrap>
-                <img src="/images/slider-badging.jpg" />
-            </Wrap>
-            <Wrap>
-                <img src="/images/slider-badag.jpg" />
-            </Wrap>
+            {
+                dataa?.map((item, index) => (
+
+                    <Wrap>
+                        <img src={urlFor(item?.slider).width(800).url()} />
+                    </Wrap>
+                ))
+            }
         </Carousel>
     )
 }

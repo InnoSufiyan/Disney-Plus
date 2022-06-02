@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { useParams, useNavigate } from "react-router-dom";
-import { selectMovies } from '../../features/movie/movieSlice';
+import { selectFilter, selectMovies } from '../../features/movie/movieSlice';
 import { useSelector } from 'react-redux';
 import sanityClient from '../../Client'
 import imageUrlBuilder from "@sanity/image-url";
@@ -17,26 +17,30 @@ function Movies({data}) {
     let navigate = useNavigate();
 
     const dataa = useSelector(selectMovies)
+    const filter = useSelector(selectFilter)
+
+    console.log(dataa[0]?.postType)
 
     return (
         <Container>
             <h4>
-                Recommended for You
+                {
+                    filter === "" ? "All Projects" : "animation" == filter.toLowerCase() ? "All Animation Projects" : "websites" == filter.toLowerCase() ? "All Website Projects" : "All Mobile App Projects"
+                }
             </h4>
             <Content>
 
                 {
-                    dataa?.map((item, index) => (
+                    dataa?.filter(item => filter === "" ? item : item.postType == filter.toLowerCase())?.map((item, index) => (
                         <Wrap key={index} onClick={
                             () => {
                                 navigate(`/detail/${item?._id}`);
                             }
                         }>
-                            <img src={urlFor(item.cardImg).width(800).url()} />
+                            <img src={urlFor(item?.cardImg).width(3200).url()} />
                         </Wrap>
                     ))
                 }
-
             </Content>
         </Container>
     )
@@ -60,6 +64,8 @@ const Wrap = styled.div`
     border : 3px solid rgba(249, 249, 249, 0.1);
     box-shadow : rgb(0 0 0 / 69%) 0px 26px 30px -10px, rgb(0 0 0 / 73%) 0px 16px 10px -10px;
     cursor: pointer;
+    transition : all 250ms cubic-bezier(0.25, 0.46, 0.45, 0.94) 0s;
+
     img {
         width : 100%;
         height : 100%;

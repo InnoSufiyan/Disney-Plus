@@ -6,7 +6,7 @@ import Viewers from '../Viewers';
 import db from '../../congif/firebase'
 import { getFirestore, collection, addDoc, doc, setDoc, getDocs } from "firebase/firestore";
 import { useDispatch } from 'react-redux';
-import { setMovies } from '../../features/movie/movieSlice';
+import { setMovies, setSlider } from '../../features/movie/movieSlice';
 import sanityClient from '../../Client'
 import imageUrlBuilder from "@sanity/image-url";
 
@@ -39,9 +39,21 @@ function Home() {
   cardImg,
   publishedAt,
   description,
+  postType,
+  webLink,
+  portfolioLink
               }
             `
         ).then((data) => dispatch(setMovies(data)))
+            .catch(console.error)
+
+        sanityClient.fetch(
+            `
+            *[_type == "slider"] {
+                slider
+              }
+            `
+        ).then((data) => dispatch(setSlider(data)))
             .catch(console.error)
     }, [])
 

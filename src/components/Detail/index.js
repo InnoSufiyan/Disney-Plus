@@ -33,6 +33,9 @@ function Detail() {
   cardImg,
   publishedAt,
   description,
+  postType,
+  webLink,
+  portfolioLink
               }
             `
         ).then((data) => dispatch(setMovie((data))))
@@ -51,14 +54,19 @@ function Detail() {
                             <img src={urlFor(item.titleImg).width(400).url()} />
                         </ImageTitle>
                         <Controls>
-                            <PlayButton>
-                                <img src="/images/play-icon-black.png" />
-                                <span>Play</span>
-                            </PlayButton>
-                            <TrailerButton>
-                                <img src="/images/play-icon-white.png" />
-                                <span>Trailer</span>
-                            </TrailerButton>
+                            <a href={item?.webLink} target='_blank'>
+
+                                <PlayButton>
+                                    <img src="/images/play-icon-black.png" />
+                                    <span>Play</span>
+                                </PlayButton>
+                            </a>
+                            <a href={item?.portfolioLink} target='_blank'>
+                                <TrailerButton>
+                                    <img src="/images/play-icon-white.png" />
+                                    <span>Behance</span>
+                                </TrailerButton>
+                            </a>
                             <AddButton>
                                 <span>+</span>
                             </AddButton>
@@ -123,7 +131,12 @@ const ImageTitle = styled.div`
 
 const Controls = styled.div`
     display: flex;
-    align-items: center;    
+    align-items: center; 
+    
+    a {
+        text-decoration: none;
+        list-style: none
+    }
 `
 const PlayButton = styled.button`
     border-radius : 4px;

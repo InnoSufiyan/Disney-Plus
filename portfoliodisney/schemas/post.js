@@ -68,6 +68,21 @@ export default {
       title: 'Description',
       type: 'blockContent',
     },
+    {
+      name: 'postType',
+      title: 'Post Type',
+      type: 'string',
+    },
+    {
+      name: 'webLink',
+      title: 'Web/Youtube Link',
+      type: 'string',
+    },
+    {
+      name: 'portfolioLink',
+      title: 'Behance/Github Link',
+      type: 'string',
+    },
   ],
 
   preview: {
