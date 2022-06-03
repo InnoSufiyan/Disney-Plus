@@ -13,30 +13,14 @@ function Header() {
                 <Logo src="/images/MyLogo.png" />
             </Link>
             <NavMenu>
-                <a>
+                <Link to = "/">
                     <img src="/images/home-icon.svg" />
                     <span>Home</span>
-                </a>
-                <a>
-                    <img src="/images/search-icon.svg" />
-                    <span>Search</span>
-                </a>
-                <a>
-                    <img src="/images/watchlist-icon.svg" />
-                    <span>Watchlist</span>
-                </a>
-                <a>
+                </Link>
+                <Link to = 'login'>
                     <img src="/images/original-icon.svg" />
-                    <span>Original</span>
-                </a>
-                <a>
-                    <img src="/images/movie-icon.svg" />
-                    <span>Movies</span>
-                </a>
-                <a>
-                    <img src="/images/series-icon.svg" />
-                    <span>Series</span>
-                </a>
+                    <span>About Me</span>
+                </Link>
             </NavMenu>
             <UserImg onClick={() => {
 
@@ -76,6 +60,8 @@ const NavMenu = styled.div`
         align-items: center;
         padding: 0 12px;
         cursor : pointer;
+        text-decoration: none;
+        color: white;
 
         img {
             height: 20px;

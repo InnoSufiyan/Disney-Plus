@@ -5,12 +5,12 @@ function Login() {
     return (
         <Container>
             <Cta>
-                <LogoOne src="/images/cta-logo-one.svg" />
+                <LogoOne src="/images/cta-logo-onee copy.png" />
                 <Signup>Get All There</Signup>
                 <Description>
                     I'm an Animator/Motion Graphics Artist and a Web developer, based in Karachi, Pakistan, I have serious Passion for UI Effects, Animations and I really love to Code.
                 </Description>
-                <LogoTwo src="/images/cta-logo-two.png" />
+                <LogoTwo src="/images/cta-logo-twoo.png" />
 
             </Cta>
         </Container>
@@ -30,7 +30,7 @@ const Container = styled.div`
         background-position: top;
         background-size: cover;
         background-repeat: no-repeat;
-        background-image : url("/images/login-background.jpg");
+        background-image : url("/images/login-background2.jpg");
         content: "";
         position: absolute;
         opacity: 0.7;
