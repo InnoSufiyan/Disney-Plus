@@ -59,6 +59,7 @@ const Nav = styled.nav`
     align-items: center;
     padding: 0 36px;
     overflow-x : hidden;
+    justify-content: space-between;
 `
 
 const Logo = styled.img`
@@ -107,6 +108,10 @@ const NavMenu = styled.div`
             }
         }
     }   
+
+    @media (max-width: 768px) {
+        display: none;
+    }
 `
 
 const UserImg = styled.img`
